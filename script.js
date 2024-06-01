@@ -44,6 +44,30 @@ class HashMap {
     }
     return null; // in the case that null isnt returned from an empty array, or key is found and value is returned
   }
+
+  has(key) {
+    const index = this.hash(key) % this.table.length;
+    if (this.table[index] === undefined) {
+      return false;
+    } else {
+      this.table[index].forEach((element) => {
+        if (element.getKey() === key) {
+          return true;
+        }
+      });
+    }
+  }
+
+  remove(key) {
+    const index = this.hash(key) % this.table.length;
+    if (this.table[index] !== undefined) {
+      this.table[index].forEach((element) => {
+        if (element.getKey() === key) {
+          this.table[index].splice(this.table[index].indexOf(element), 1);
+        }
+      });
+    }
+  }
 }
 
 class Nodes {
