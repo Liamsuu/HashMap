@@ -20,16 +20,14 @@ class HashMap {
       // if no collision
       this.table.splice(index, 0, [new Nodes(key, value)]); // will create a new array(bucket) at this index that will store new nodes there, and initialize it with its first node
     } else {
-      this.table[index].forEach(element => {
+      this.table[index].forEach((element) => {
         // will iterate through each node object in here and will update keys value if present, or add new node to array if not.
-        if(element.getKey() === key){
+        if (element.getKey() === key) {
           element.changeValue(value);
-        }
-        else if(this.table.indexOf(element) === this.table.length - 1){
+        } else if (this.table.indexOf(element) === this.table.length - 1) {
           this.table[index].push(new Nodes(key, value)); // this will only get run if the key was not found in the array after reaching the end
         }
       });
-      
     }
   }
 }
@@ -40,15 +38,15 @@ class Nodes {
     this.value = value;
   }
 
-  getKey(){
+  getKey() {
     return this.key;
   }
 
-  getValue(){
+  getValue() {
     return this.value;
   }
 
-  changeValue(newValue){\
+  changeValue(newValue) {
     this.value = newValue;
   }
 }
