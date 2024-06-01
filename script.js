@@ -18,7 +18,7 @@ class HashMap {
     const index = this.hash(key) % this.table.length; // this should get a number that will act as index for a 'bucket'(which is an array of values)
     if (this.table[index] === undefined) {
       // if no collision
-      this.table.splice(index, 0, [new Nodes(key, value)]); // will create a new array(bucket) at this index that will store new nodes there, and initialize it with its first node
+      this.table.splice(index, 1, [new Nodes(key, value)]); // will create a new array(bucket) at this index that will store new nodes there, and initialize it with its first node
     } else {
       this.table[index].forEach((element) => {
         // will iterate through each node object in here and will update keys value if present, or add new node to array if not.
@@ -36,11 +36,11 @@ class HashMap {
     if (this.table[index] === undefined) {
       return null;
     } else {
-      this.table[index].forEach((element) => {
+      for (const element of this.table[index]) {
         if (element.getKey() === key) {
           return element.getKey();
         }
-      });
+      }
     }
     return null; // in the case that null isnt returned from an empty array, or key is found and value is returned
   }
@@ -50,11 +50,11 @@ class HashMap {
     if (this.table[index] === undefined) {
       return false;
     } else {
-      this.table[index].forEach((element) => {
+      for (const element of this.table[index]) {
         if (element.getKey() === key) {
           return true;
         }
-      });
+      }
     }
   }
 
@@ -64,6 +64,9 @@ class HashMap {
       this.table[index].forEach((element) => {
         if (element.getKey() === key) {
           this.table[index].splice(this.table[index].indexOf(element), 1);
+          if (this.table[index].length === 0) {
+            this.table.splice(index, 1, undefined);
+          }
         }
       });
     }
@@ -88,3 +91,12 @@ class Nodes {
     this.value = newValue;
   }
 }
+
+const hashMapTest = new HashMap();
+
+hashMapTest.set("smelly", "thevalue");
+console.log(hashMapTest.table);
+console.log(hashMapTest.get("smelly"));
+console.log(hashMapTest.has("liam"));
+hashMapTest.remove("smelly");
+console.log(hashMapTest.table);
