@@ -24,7 +24,10 @@ class HashMap {
         // will iterate through each node object in here and will update keys value if present, or add new node to array if not.
         if (element.getKey() === key) {
           element.changeValue(value);
-        } else if (this.table.indexOf(element) === this.table.length - 1) {
+        } else if (
+          this.table[index].indexOf(element) ===
+          this.table[index].length - 1
+        ) {
           this.table[index].push(new Nodes(key, value)); // this will only get run if the key was not found in the array after reaching the end
         }
       });
@@ -91,12 +94,3 @@ class Nodes {
     this.value = newValue;
   }
 }
-
-const hashMapTest = new HashMap();
-
-hashMapTest.set("smelly", "thevalue");
-console.log(hashMapTest.table);
-console.log(hashMapTest.get("smelly"));
-console.log(hashMapTest.has("liam"));
-hashMapTest.remove("smelly");
-console.log(hashMapTest.table);
