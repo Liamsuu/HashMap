@@ -74,6 +74,22 @@ class HashMap {
       });
     }
   }
+
+  length() {
+    let keyCount = 0;
+
+    this.table.forEach((bucket) => {
+      if (bucket !== undefined) {
+        bucket.forEach((node) => {
+          if (node.getKey() !== null) {
+            keyCount += 1;
+          }
+        });
+      }
+    });
+
+    return keyCount;
+  }
 }
 
 class Nodes {
