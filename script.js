@@ -98,6 +98,20 @@ class HashMap {
       }
     });
   }
+
+  keys() {
+    let keyArr = [];
+    this.table.forEach((bucket) => {
+      if (bucket !== undefined) {
+        bucket.forEach((node) => {
+          if (node.getKey() !== null) {
+            keyArr.push(node.getKey());
+          }
+        });
+      }
+    });
+    return keyArr;
+  }
 }
 
 class Nodes {
