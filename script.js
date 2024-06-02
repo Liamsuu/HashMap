@@ -90,6 +90,14 @@ class HashMap {
 
     return keyCount;
   }
+
+  clear() {
+    this.table.forEach((bucket) => {
+      if (bucket !== undefined) {
+        this.table.splice(this.table.indexOf(bucket), 1, undefined);
+      }
+    });
+  }
 }
 
 class Nodes {
