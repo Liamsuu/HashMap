@@ -16,10 +16,10 @@ Create HashMap Entry:
 testHashMap.set("key", "value");
 ```
 
-Get the key:
+Get a keys value:
 
 ```javascript
-testHashMap.get("key"); // will return the key if its there
+testHashMap.get("key");
 ```
 
 Check if key is in list:

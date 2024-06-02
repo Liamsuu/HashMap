@@ -41,7 +41,7 @@ class HashMap {
     } else {
       for (const element of this.table[index]) {
         if (element.getKey() === key) {
-          return element.getKey();
+          return element.getValue();
         }
       }
     }
@@ -58,6 +58,7 @@ class HashMap {
           return true;
         }
       }
+      return false; // in the case that it reaches the end and still has not returned true meaning its not there
     }
   }
 
