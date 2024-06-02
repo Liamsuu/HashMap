@@ -112,6 +112,20 @@ class HashMap {
     });
     return keyArr;
   }
+
+  values() {
+    let valueArr = [];
+    this.table.forEach((bucket) => {
+      if (bucket !== undefined) {
+        bucket.forEach((node) => {
+          if (node.getValue() !== null) {
+            valueArr.push(node.getValue());
+          }
+        });
+      }
+    });
+    return valueArr;
+  }
 }
 
 class Nodes {
